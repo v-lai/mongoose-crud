@@ -4,3 +4,5 @@ block content
   h1 See all the tacos for #{eater.name}
   each taco in eater.tacos
     p #{taco.name} / #{taco.numToppings}
+    a(href=`/eaters/${eater.id}/tacos/${taco.id}`) Show 
+    a(href=`/eaters/${eater.id}/tacos/${taco.id}/edit`) Edit
