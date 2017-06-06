@@ -1,0 +1,13 @@
+extends ../base.pug
+
+block content
+  h1 Albert wants #{taco.eater.name} to Edit this way!
+  form(action=`/eaters/${taco.eater.id}/tacos/${taco.id}?_method=PATCH`, method="POST")
+    label(for="name") Name:
+    input(type="text", name="taco[name]", value=taco.name, id="name")
+    label(for="numToppings") Number of Toppings
+    input(type="text", name="taco[numToppings]", value=taco.numToppings, id="numToppings")
+    input(type="submit", value="Edit a Taco - FOOL!")
+
+  form(action=`/eaters/${taco.eater.id}/tacos/${taco.id}?_method=DELETE`, method="POST")
+    input(type="submit", value="X")

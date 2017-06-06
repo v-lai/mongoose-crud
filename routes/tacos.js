@@ -32,5 +32,30 @@ router.post('/', function(req,res,next){
   })
 })
 
+router.get('/:id/edit', function(req,res,next){
+  db.Taco.findById(req.params.id).populate('eater').then(function(taco){
+    res.render('tacos/edit', {taco})
+  }, function(err){
+    next(err)
+  })
+})
+
+router.patch('/:id', function(req,res,next){
+  db.Taco.findByIdAndUpdate(req.params.id, req.body.taco).then(function(taco){
+    res.redirect(`/eaters/${req.params.eater_id}/tacos`)
+  }, function(err){
+    next(err)
+  })
+})
+
+router.delete('/:id', function(req,res,next){
+  db.Taco.findById(req.params.id).then(function(taco){
+    taco.remove().then(function(){
+      res.redirect(`/eaters/${req.params.eater_id}/tacos`)
+    })
+  }, function(err){
+    next(err)
+  })
+})
 
 module.exports = router;
