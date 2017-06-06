@@ -5,7 +5,11 @@ var eaterSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  favoriteTopping: String
+  favoriteTopping: String,
+  tacos: [{
+    ref: 'Taco',
+    type: mongoose.Schema.Types.ObjectId
+  }]
 })
 
 var Eater = mongoose.model('Eater', eaterSchema)
