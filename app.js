@@ -4,6 +4,7 @@ const methodOverride = require("method-override")
 const morgan = require("morgan")
 const bodyParser = require("body-parser");
 const eatersRoutes = require("./routes/eaters")
+const tacosRoutes = require("./routes/tacos")
 
 app.set("view engine", "pug");
 app.use(express.static(__dirname + "/public"));
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method")); // ?_method=DELETE
 
 app.use('/eaters', eatersRoutes)
+app.use('/eaters/:eater_id/tacos', tacosRoutes)
 
 app.get("/", function(req,res){
   res.redirect("/eaters");
