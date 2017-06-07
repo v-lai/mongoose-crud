@@ -47,11 +47,22 @@ router.patch('/:id', function(req,res,next){
 })
 
 router.delete('/:id', function(req,res,next){
-  db.Eater.findByIdAndRemove(req.params.id).then(function(){
-    res.redirect('/eaters')
+  db.Eater.findById(req.params.id).then(function(eater){
+    eater.remove().then(function(){
+      res.redirect('/eaters')
+    })
   }, function(err){
     next(err)
   })
 })
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
